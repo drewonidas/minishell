@@ -1,6 +1,6 @@
 NAME = minishell
 
-SRC = sh.c utils.c utils_2.c ft_cnt_words.c
+SRC = sh.c sh_functions.c ft_cnt_words.c navigate_dirs.c echo.c environment_vars.c
 
 OBJ = $(SRC:.c=.o)
 

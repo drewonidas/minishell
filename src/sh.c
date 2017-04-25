@@ -11,11 +11,10 @@
 /* ************************************************************************** */
 
 #include "sh.h"
-#include <stdio.h>
 
-char		 *join_path(const char *path, const char *command)
+char				*join_path(const char *path, const char *command)
 {
-	char	*new;
+	char			*new;
 
 	new = ft_strnew(ft_strlen(path) + ft_strlen(command) + 1);
 	new = ft_strcpy(new, path);
@@ -24,40 +23,12 @@ char		 *join_path(const char *path, const char *command)
 	return (new);
 }
 
-void					run_env(t_sh *sh)
+void				run(t_sh *sh)
 {
-	int					i;
-	t_bool				valid;
-
-	i = 1;
-	valid = TRUE;
-	if (sh->cmd[i] != NULL)
-	{
-		while (sh->cmd[i] && valid)
-		{
-			if (ft_strchr(sh->cmd[i], '=') == NULL)
-				valid = FALSE;
-			else
-				set_env(sh->cmd[i], sh);
-			i++;
-		}
-	}
-	if (valid)
-	{
-		print_env(sh->env_var);
-		unset_env(sh);
-	}
-	ft_putstr("env: ");
-	ft_putstr(sh->cmd[i]);
-	ft_putendl("No such file or directory");
-}
-
-void					run(t_sh *sh)
-{
-	int					sig;
-	int					result;
-	int					c;
-	char				*tmp;
+	int				sig;
+	int				result;
+	int				c;
+	char			*tmp;
 
 	tmp = NULL;
 	sig = 0;
@@ -85,7 +56,7 @@ void					run(t_sh *sh)
 	}
 }
 
-int						minishell(t_sh *sh)
+int					minishell(t_sh *sh)
 {
 	ft_putstr("@>>> ");
 	sh->cmd = getcmd();
@@ -110,15 +81,15 @@ int						minishell(t_sh *sh)
 	return (1);
 }
 
-int						main(void)
+int					main(void)
 {
-	extern	char		**environ;
-	t_sh				*sh;
+	extern	char	**environ;
+	t_sh			*sh;
 
 	sh = (t_sh *)malloc(sizeof(t_sh));
 	init_sh(sh, environ);
 	while (1)
-	{	
+	{
 		if (!minishell(sh))
 		 break ;
 	}

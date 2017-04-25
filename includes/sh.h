@@ -1,10 +1,11 @@
 #ifndef SH_H
-#define SH_H
+#	define SH_H
 
-#include <sys/types.h>
-#include <sys/wait.h>
-#include <signal.h>
-#include "libft.h"
+#	include <sys/types.h>
+#	include <sys/wait.h>
+#	include <signal.h>
+#	include "libft.h"
+#include <stdio.h>
 
 typedef struct	s_sh
 {
@@ -20,7 +21,7 @@ void			change_dir(t_sh *sh);
 
 void			exit_sh(t_sh *sh);
 
-void			navigate();
+void			run_env(t_sh *sh);
 
 void			print_env(char **env);
 
@@ -33,8 +34,6 @@ void			echo_word(t_sh *sh);
 char			**getcmd();
 
 void			init_sh(t_sh *sh, char **env);
-
-int				indexof(char *str, char c);
 
 int				find(char **env, char *var);
 
